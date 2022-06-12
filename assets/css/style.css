@@ -1,0 +1,21 @@
+form {
+    width: 100%;
+    max-width: 600px;
+}
+
+.btn {
+    color: #000;
+    background-color: rgb(207, 207, 207);
+    width: 24%;
+    margin: 0 0.5%;
+    box-shadow: none;
+}
+
+.btn:hover {
+    box-shadow: none;
+}
+
+.botoes {
+    display: flex;
+    flex-direction: row;
+}
