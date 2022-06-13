@@ -14,46 +14,46 @@
         <link rel="stylesheet" href="./assets/css/style.css" />
         <script src="./assets/js/main.js" defer></script>
     </head>
-    <body>
+    <body class="bg-dark">
         <main class="container">
-            <form>
+            <form class="bg-white p-3 mt-5 ms-auto me-auto rounded">
                 <fieldset>
                     <legend>Calculadora</legend>
-                    <div class="mb-1 text-end">
-                        <input type="number" class="form-control" id="numero" name="numero" disabled />
+                    <div class="mb-1">
+                        <input type="text" class="form-control text-end" id="numero" name="numero" disabled />
                     </div>
 
                     <div class="botoes mb-1">
                         <button type="button" class="btn">C</button>
-                        <button type="button" class="btn">(</button>
-                        <button type="button" class="btn">)</button>
-                        <button type="button" class="btn">/</button>
+                        <button type="button" class="btn" data-parenteses>(</button>
+                        <button type="button" class="btn" data-parenteses>)</button>
+                        <button type="button" class="btn" data-operando>/</button>
                     </div>
 
                     <div class="botoes mb-1">
-                        <button type="button" class="btn numero">7</button>
-                        <button type="button" class="btn numero">8</button>
-                        <button type="button" class="btn numero">9</button>
-                        <button type="button" class="btn">*</button>
+                        <button type="button" class="btn" data-numero>7</button>
+                        <button type="button" class="btn" data-numero>8</button>
+                        <button type="button" class="btn" data-numero>9</button>
+                        <button type="button" class="btn" data-operando>*</button>
                     </div>
 
                     <div class="botoes mb-1">
-                        <button type="button" class="btn numero">4</button>
-                        <button type="button" class="btn numero">5</button>
-                        <button type="button" class="btn numero">6</button>
-                        <button type="button" class="btn">+</button>
+                        <button type="button" class="btn" data-numero>4</button>
+                        <button type="button" class="btn" data-numero>5</button>
+                        <button type="button" class="btn" data-numero>6</button>
+                        <button type="button" class="btn" data-operando>+</button>
                     </div>
 
                     <div class="botoes mb-1">
-                        <button type="button" class="btn numero">1</button>
-                        <button type="button" class="btn numero">2</button>
-                        <button type="button" class="btn numero">3</button>
-                        <button type="button" class="btn">-</button>
+                        <button type="button" class="btn" data-numero>1</button>
+                        <button type="button" class="btn" data-numero>2</button>
+                        <button type="button" class="btn" data-numero>3</button>
+                        <button type="button" class="btn" data-operando>-</button>
                     </div>
 
-                    <div class="botoes mb-1">
+                    <div class="botoes mb-5">
                         <button type="button" class="btn">.</button>
-                        <button type="button" class="btn numero">0</button>
+                        <button type="button" class="btn" data-numero>0</button>
                         <button type="button" class="btn">&lt;&lt;</button>
                         <button type="submit" class="btn">=</button>
                     </div>
