@@ -1,88 +1,68 @@
-function calculadora() {
+function createCalculator() {
     return {
-        calculo: "",
-        input: document.querySelector("input"),
-        numeros: {
-            um: "",
-            dois: "",
-            operando: "",
+        input: document.querySelector("[data-input]"),
+
+        start() {
+            this.clickButtons();
+            this.pressEnter();
         },
 
-        set adicionaNumero(numero) {
-            if (this.numeros.operando) this.numeros.dois += numero;
-            else this.numeros.um += numero;
-            this.mostraNumero();
+        appendParans(value) {
+            this.input.value += value;
         },
 
-        set defineOperando(operando) {
-            if (this.numeros.dois) this.realizaCalculo();
-            this.numeros.operando = operando;
-            this.mostraNumero();
+        clearInput() {
+            this.input.value = "";
         },
 
-        limpaInput() {
-            this.calculo = "";
-            this.numeros.um = "";
-            this.numeros.dois = "";
-            this.numeros.operando = "";
-
-            this.mostraNumero();
+        deleteOne() {
+            this.input.value = this.input.value.slice(0, -1);
         },
 
-        removeCaractere() {
-            if (this.numeros.dois) this.numeros.dois = this.numeros.dois.substring(0, this.numeros.dois.length - 1);
-            else if (this.numeros.operando) this.numeros.operando = "";
-            else if (this.numeros.um) this.numeros.um = this.numeros.um.substring(0, this.numeros.um.length - 1);
-
-            this.mostraNumero();
+        pressEnter() {
+            this.input.addEventListener("keyup", (e) => {
+                if (e.keyCode === 13) {
+                    this.calculate();
+                }
+            });
         },
 
-        mostraNumero() {
-            this.calculo = `${this.numeros.um} ${this.numeros.operando} ${this.numeros.dois}`;
-            this.input.value = this.calculo;
+        calculate() {
+            try {
+                this.input.value = eval(this.input.value);
+
+                if (isNaN(this.input.value)) {
+                    throw new Error("Conta inválida");
+                }
+            } catch (e) {
+                alert("Conta inválida");
+                this.clearInput();
+            }
         },
 
-        adicionaDecimal() {
-            if (this.numeros.dois && !this.numeros.dois.includes(".")) this.numeros.dois += ".";
-            else if (this.numeros.um && !this.numeros.um.includes(".") && !this.numeros.operando) this.numeros.um += ".";
+        clickButtons() {
+            document.addEventListener("click", (e) => {
+                const el = e.target;
 
-            this.mostraNumero();
-        },
+                if (el.hasAttribute("data-number")) {
+                    this.appendParans(el.innerText);
+                }
 
-        realizaCalculo() {
-            const calc = this.calculo;
+                if (el.hasAttribute("data-clear")) {
+                    this.clearInput();
+                }
 
-            this.limpaInput();
-            this.adicionaNumero = eval(calc);
+                if (el.hasAttribute("data-delete")) {
+                    this.deleteOne();
+                }
+
+                if (el.hasAttribute("data-equals")) {
+                    this.calculate();
+                }
+            });
         },
     };
 }
 
-const form = document.querySelector("form");
-const calc = calculadora();
-
-form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    calc.realizaCalculo();
-});
-
-form.addEventListener("click", (e) => {
-    const el = e.target;
-    if (el.hasAttribute("data-numero")) {
-        calc.adicionaNumero = el.innerHTML;
-    }
-
-    if (el.hasAttribute("data-operando")) {
-        calc.defineOperando = el.innerHTML;
-    }
-
-    if (el.innerHTML === "C") {
-        calc.limpaInput();
-    }
-
-    if (el.innerHTML === ".") {
-        calc.adicionaDecimal();
-    }
-
-    if (el.innerHTML === "&lt;&lt;") calc.removeCaractere();
-});
+const calculator = createCalculator();
+calculator.start();

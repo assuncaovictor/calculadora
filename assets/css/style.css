@@ -3,10 +3,12 @@ form {
     max-width: 600px;
 }
 
+.tabela {
+    padding: 1rem;
+}
+
 .btn {
-    color: #000;
-    background-color: rgb(207, 207, 207);
-    width: 24%;
+    width: 100%;
     margin: 0 0.5%;
     box-shadow: none;
 }

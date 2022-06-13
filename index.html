@@ -14,51 +14,96 @@
         <link rel="stylesheet" href="./assets/css/style.css" />
         <script src="./assets/js/main.js" defer></script>
     </head>
-    <body class="bg-dark">
-        <main class="container">
-            <form class="bg-white p-3 mt-5 ms-auto me-auto rounded">
-                <fieldset>
-                    <legend>Calculadora</legend>
-                    <div class="mb-1">
-                        <input type="text" class="form-control text-end" id="numero" name="numero" disabled />
-                    </div>
-
-                    <div class="botoes mb-1">
-                        <button type="button" class="btn">C</button>
-                        <button type="button" class="btn" data-parenteses>(</button>
-                        <button type="button" class="btn" data-parenteses>)</button>
-                        <button type="button" class="btn" data-operando>/</button>
-                    </div>
-
-                    <div class="botoes mb-1">
-                        <button type="button" class="btn" data-numero>7</button>
-                        <button type="button" class="btn" data-numero>8</button>
-                        <button type="button" class="btn" data-numero>9</button>
-                        <button type="button" class="btn" data-operando>*</button>
-                    </div>
-
-                    <div class="botoes mb-1">
-                        <button type="button" class="btn" data-numero>4</button>
-                        <button type="button" class="btn" data-numero>5</button>
-                        <button type="button" class="btn" data-numero>6</button>
-                        <button type="button" class="btn" data-operando>+</button>
-                    </div>
-
-                    <div class="botoes mb-1">
-                        <button type="button" class="btn" data-numero>1</button>
-                        <button type="button" class="btn" data-numero>2</button>
-                        <button type="button" class="btn" data-numero>3</button>
-                        <button type="button" class="btn" data-operando>-</button>
-                    </div>
-
-                    <div class="botoes mb-5">
-                        <button type="button" class="btn">.</button>
-                        <button type="button" class="btn" data-numero>0</button>
-                        <button type="button" class="btn">&lt;&lt;</button>
-                        <button type="submit" class="btn">=</button>
-                    </div>
-                </fieldset>
-            </form>
+    <body class="bg-light">
+        <main class="container d-flex align-items-center justify-content-center">
+            <div class="bg-dark rounded mt-5 tabela">
+                <table class="table-dark table w-auto">
+                    <thead>
+                        <tr>
+                            <th scope="col" colspan="4" class="rounded">
+                                <h1>Calculadora</h1>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td scope="row" colspan="4">
+                                <input type="text" name="numeros" id="numeros" class="form-control text-end" data-input />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">
+                                <button class="btn btn-secondary" data-clear>C</button>
+                            </td>
+                            <td scope="row">
+                                <button class="btn btn-secondary" data-number>(</button>
+                            </td>
+                            <td scope="row">
+                                <button class="btn btn-secondary" data-number>)</button>
+                            </td>
+                            <td scope="row">
+                                <button class="btn btn-secondary" data-number>/</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">
+                                <button class="btn btn-secondary" data-number>7</button>
+                            </td>
+                            <td scope="row">
+                                <button class="btn btn-secondary" data-number>8</button>
+                            </td>
+                            <td scope="row">
+                                <button class="btn btn-secondary" data-number>9</button>
+                            </td>
+                            <td scope="row">
+                                <button class="btn btn-secondary" data-number>*</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">
+                                <button class="btn btn-secondary" data-number>4</button>
+                            </td>
+                            <td scope="row">
+                                <button class="btn btn-secondary" data-number>5</button>
+                            </td>
+                            <td scope="row">
+                                <button class="btn btn-secondary" data-number>6</button>
+                            </td>
+                            <td scope="row">
+                                <button class="btn btn-secondary" data-number="">+</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">
+                                <button class="btn btn-secondary" data-number>1</button>
+                            </td>
+                            <td scope="row">
+                                <button class="btn btn-secondary" data-number>2</button>
+                            </td>
+                            <td scope="row">
+                                <button class="btn btn-secondary" data-number>3</button>
+                            </td>
+                            <td scope="row">
+                                <button class="btn btn-secondary" data-number>-</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">
+                                <button class="btn btn-secondary" data-number>.</button>
+                            </td>
+                            <td scope="row">
+                                <button class="btn btn-secondary" data-number>0</button>
+                            </td>
+                            <td scope="row">
+                                <button class="btn btn-secondary" data-delete>&laquo;&laquo;</button>
+                            </td>
+                            <td scope="row">
+                                <button class="btn btn-secondary" data-equals>=</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </main>
     </body>
 </html>
