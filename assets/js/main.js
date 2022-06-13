@@ -1,39 +1,56 @@
 function calculadora() {
-    const input = document.querySelector("input");
-    input.value = 0;
-
     return {
-        numero1: "0",
-        numero2: undefined,
-        input,
-
-        limpaInput() {
-            this.numero1 = 0;
-            this.numero2 = undefined;
-        },
+        calculo: "",
+        input: document.querySelector("input"),
 
         set adicionaNumero(numero) {
-            this.numero1 += `${numero}`;
+            this.calculo += numero;
+            this.mostraNumero();
         },
 
-        get pegaNumero() {
-            return;
+        set defineOperando(operando) {
+            this.operando += operando;
+            this.mostraNumero();
+        },
+
+        limpaInput() {
+            this.calculo = "";
+            this.mostraNumero();
+        },
+
+        removeCaractere() {
+            const len = this.calculo.length;
+            this.calculo = this.calculo.substring(0, len - 1);
+            this.mostraNumero();
+        },
+
+        mostraNumero() {
+            this.input.value = this.calculo;
         },
     };
 }
 
 const form = document.querySelector("form");
+const calc = calculadora();
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
 });
 
-document.addEventListener("click", (e) => {
+form.addEventListener("click", (e) => {
     const el = e.target;
     if (el.classList.contains("numero")) {
-        calc.adicionaNumero = el.value;
-        console.log(calc.numero1);
+        calc.adicionaNumero = el.innerHTML;
     }
-});
 
-const calc = calculadora();
+    if (el.innerHTML === "C") {
+        calc.limpaInput();
+    }
+
+    if (el.innerHTML === "/") calc.defineOperando = "/";
+    if (el.innerHTML === "+") calc.defineOperando = "+";
+    if (el.innerHTML === "-") calc.defineOperando = "-";
+    if (el.innerHTML === "*") calc.defineOperando = "*";
+
+    if (el.innerHTML === "&lt;&lt;") calc.removeCaractere();
+});
