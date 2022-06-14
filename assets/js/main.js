@@ -1,68 +1,69 @@
-function createCalculator() {
-    return {
-        input: document.querySelector("[data-input]"),
+function Calculator() {
+    // Atributo privado
+    const input = document.querySelector("[data-input]");
 
-        start() {
-            this.clickButtons();
-            this.pressEnter();
-        },
+    // métodos públicos
+    this.start = () => {
+        clickButtons();
+        pressEnter();
+    };
 
-        appendParans(value) {
-            this.input.value += value;
-        },
+    this.appendParans = (value) => {
+        input.value += value;
+    };
 
-        clearInput() {
-            this.input.value = "";
-        },
+    this.clearInput = () => {
+        input.value = "";
+    };
 
-        deleteOne() {
-            this.input.value = this.input.value.slice(0, -1);
-        },
+    this.deleteOne = () => {
+        input.value = input.value.slice(0, -1);
+    };
 
-        pressEnter() {
-            this.input.addEventListener("keyup", (e) => {
-                if (e.keyCode === 13) {
-                    this.calculate();
-                }
-            });
-        },
+    this.calculate = () => {
+        try {
+            input.value = eval(input.value);
 
-        calculate() {
-            try {
-                this.input.value = eval(this.input.value);
+            if (isNaN(input.value)) {
+                throw new Error("Conta inválida");
+            }
+        } catch (e) {
+            alert("Conta inválida");
+            this.clearInput();
+        }
+    };
 
-                if (isNaN(this.input.value)) {
-                    throw new Error("Conta inválida");
-                }
-            } catch (e) {
-                alert("Conta inválida");
+    // Métodos privados
+    const clickButtons = () => {
+        document.addEventListener("click", (e) => {
+            const el = e.target;
+
+            if (el.hasAttribute("data-number")) {
+                this.appendParans(el.innerText);
+            }
+
+            if (el.hasAttribute("data-clear")) {
                 this.clearInput();
             }
-        },
 
-        clickButtons() {
-            document.addEventListener("click", (e) => {
-                const el = e.target;
+            if (el.hasAttribute("data-delete")) {
+                this.deleteOne();
+            }
 
-                if (el.hasAttribute("data-number")) {
-                    this.appendParans(el.innerText);
-                }
+            if (el.hasAttribute("data-equals")) {
+                this.calculate();
+            }
+        });
+    };
 
-                if (el.hasAttribute("data-clear")) {
-                    this.clearInput();
-                }
-
-                if (el.hasAttribute("data-delete")) {
-                    this.deleteOne();
-                }
-
-                if (el.hasAttribute("data-equals")) {
-                    this.calculate();
-                }
-            });
-        },
+    const pressEnter = () => {
+        input.addEventListener("keyup", (e) => {
+            if (e.keyCode === 13) {
+                this.calculate();
+            }
+        });
     };
 }
 
-const calculator = createCalculator();
+const calculator = new Calculator();
 calculator.start();
